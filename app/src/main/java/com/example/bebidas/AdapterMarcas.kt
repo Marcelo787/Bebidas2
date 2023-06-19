@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class AdapterMarcas : RecyclerView.Adapter<AdapterMarcas.ViewHolderMarca>() {
+class AdapterMarcas(val fragment: ListaMarcasFragment) : RecyclerView.Adapter<AdapterMarcas.ViewHolderMarca>() {
 
     var cursor: Cursor? = null
         set(value) {
@@ -42,7 +42,9 @@ class AdapterMarcas : RecyclerView.Adapter<AdapterMarcas.ViewHolderMarca>() {
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMarca {
-        TODO("Not yet implemented")
+        return ViewHolderMarca(
+            fragment.layoutInflater.inflate(R.layout.item_marca, parent, false)
+        )
     }
 
     /**
