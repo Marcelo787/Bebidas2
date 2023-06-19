@@ -175,7 +175,8 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun eliminarMarca() {
-
+        val acao = ListaMarcasFragmentDirections.actionListaMarcasFragmentToEliminarMarcaFragment(marcaSelecionada!!)
+        findNavController().navigate(acao)
     }
 
     private fun editarMarca() {

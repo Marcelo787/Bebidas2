@@ -157,10 +157,10 @@ class BdInstrumentedTest {
     fun consegueAlterarMarcas() {
         val bd = getWritableDatabase()
 
-        val marcas = Marcas("Cristal")
+        val marcas = Marcas("Crista")
         insereMarca(bd, marcas)
 
-        marcas.nome = "Poesia"
+        marcas.nome = "Cristal"
 
         val registosAlterados = TabelaMarcas(bd).altera(
             marcas.toContentValues(),

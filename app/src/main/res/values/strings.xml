@@ -34,4 +34,6 @@
     <string name="Nome_Marca_obrigatorio">Nome Marca obrigatorio</string>
     <string name="erro_guardar_marca">Erro Guardar Marca</string>
     <string name="marca_guardada_com_sucesso">Marca Guardada com Sucesso</string>
+    <string name="marca_eliminada_com_sucesso">Marca Eliminada com Sucesso</string>
+    <string name="erro_eliminar_marca">Erro Eliminar Marca</string>
 </resources>
