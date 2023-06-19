@@ -218,7 +218,17 @@ class BebidasContentProvider : ContentProvider() {
      * @throws SQLException
      */
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(uri)
+        val tabela = when (endereco) {
+            URI_MARCAS_ID -> TabelaMarcas(bd)
+            URI_BEBIDAS_ID -> TabelaBebidas(bd)
+            else -> return 0
+        }
+
+        val id = uri.lastPathSegment!!
+        return tabela.elimina("${BaseColumns._ID}=?", arrayOf(id))
     }
 
     /**
