@@ -151,4 +151,82 @@ class BdInstrumentedTest {
 
         assert(cursorTodosBebidas.count > 1)
     }
+
+
+    @Test
+    fun consegueAlterarMarcas() {
+        val bd = getWritableDatabase()
+
+        val marcas = Marcas("Cristal")
+        insereMarca(bd, marcas)
+
+        marcas.nome = "Poesia"
+
+        val registosAlterados = TabelaMarcas(bd).altera(
+            marcas.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(marcas.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+    }
+
+    @Test
+    fun consegueAlterarBebidas() {
+        val bd = getWritableDatabase()
+
+        val marcas1 = Marcas("Somersby")
+        insereMarca(bd, marcas1)
+
+        val marcas2 = Marcas("Bandida do Pomar")
+        insereMarca(bd, marcas2)
+
+        val bebidas = Bebidas("Sidra com Álcool Maçã Mini","Teor alcoólico: 4,5%", marcas2.id)
+        insereBebidas(bd, bebidas)
+
+        bebidas.idMarca = marcas1.id
+        bebidas.nome = "Sidra com Álcool Maçã"
+        bebidas.descricao = "Teor alcoólico: 4,2%"
+
+        val registosAlterados = TabelaBebidas(bd).altera(
+            bebidas.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(bebidas.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+    }
+
+    @Test
+    fun consegueApagarMarcas() {
+        val bd = getWritableDatabase()
+
+        val marcas = Marcas("Coruja")
+        insereMarca(bd, marcas)
+
+        val registosEliminados = TabelaMarcas(bd).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf(marcas.id.toString())
+        )
+
+        assertEquals(1, registosEliminados)
+    }
+
+    @Test
+    fun consegueApagarBebidas() {
+        val bd = getWritableDatabase()
+
+        val marcas = Marcas("Franziskaner")
+        insereMarca(bd, marcas)
+
+        val bebidas = Bebidas("Cerveja com Álcool", "Percentagem de álcool em volume: 5",marcas.id)
+        insereBebidas(bd, bebidas)
+
+        val registosEliminados = TabelaBebidas(bd).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf(bebidas.id.toString())
+        )
+
+        assertEquals(1, registosEliminados)
+    }
 }
