@@ -82,19 +82,19 @@
             android:id="@+id/action_listaMarcasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_listaMarcasFragment_to_novaMarcaFragment"
-            app:destination="@id/novaMarcaFragment" />
+            android:id="@+id/action_listaMarcasFragment_to_editarMarcaFragment"
+            app:destination="@id/editarMarcaFragment" />
         <action
             android:id="@+id/action_listaMarcasFragment_to_eliminarMarcaFragment"
             app:destination="@id/eliminarMarcaFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novaMarcaFragment"
-        android:name="com.example.bebidas.NovaMarcaFragment"
-        android:label="fragment_nova_marca"
-        tools:layout="@layout/fragment_nova_marca" >
+        android:id="@+id/editarMarcaFragment"
+        android:name="com.example.bebidas.EditarMarcaFragment"
+        android:label="fragment_editar_marca"
+        tools:layout="@layout/fragment_editar_marca">
         <action
-            android:id="@+id/action_novaMarcaFragment_to_listaMarcasFragment"
+            android:id="@+id/action_editarMarcaFragment_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
     </fragment>
     <fragment

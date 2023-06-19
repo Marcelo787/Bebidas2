@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             is EliminarBebidaFragment -> (fragment as EliminarBebidaFragment).processaOpcaoMenu(item)
 
             is ListaMarcasFragment -> (fragment as ListaMarcasFragment).processaOpcaoMenu(item)
-            is NovaMarcaFragment -> (fragment as NovaMarcaFragment).processaOpcaoMenu(item)
+            is EditarMarcaFragment -> (fragment as EditarMarcaFragment).processaOpcaoMenu(item)
             is EliminarMarcaFragment -> (fragment as EliminarMarcaFragment).processaOpcaoMenu(item)
 
             else -> false

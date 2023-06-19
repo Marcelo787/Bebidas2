@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.bebidas.databinding.FragmentNovaMarcaBinding
-import java.text.SimpleDateFormat
-import java.util.*
+import com.example.bebidas.databinding.FragmentEditarMarcaBinding
 
-class NovaMarcaFragment : Fragment() {
-    private var _binding: FragmentNovaMarcaBinding? = null
+class EditarMarcaFragment : Fragment() {
+    private var _binding: FragmentEditarMarcaBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,7 +21,7 @@ class NovaMarcaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentNovaMarcaBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarMarcaBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -57,7 +55,7 @@ class NovaMarcaFragment : Fragment() {
     }
 
     private fun voltaListaMarcas() {
-        findNavController().navigate(R.id.action_novaMarcaFragment_to_listaMarcasFragment)
+        findNavController().navigate(R.id.action_editarMarcaFragment_to_listaMarcasFragment)
     }
 
     private fun guardar() {
