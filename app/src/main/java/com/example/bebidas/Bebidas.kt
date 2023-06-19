@@ -8,7 +8,7 @@ import android.provider.BaseColumns
 data class Bebidas(
     var nome: String,
     var descricao: String,
-    var idMarca: Long,
+    var idMarca: Marcas,
     var id: Long = -1
 ) {
     fun toContentValues() : ContentValues {
@@ -16,7 +16,7 @@ data class Bebidas(
 
         valores.put(TabelaBebidas.CAMPO_NOME, nome)
         valores.put(TabelaBebidas.CAMPO_DESCRICAO, descricao)
-        valores.put(TabelaBebidas.CAMPO_FK_MARCA, idMarca)
+        valores.put(TabelaBebidas.CAMPO_FK_MARCA, idMarca.id)
 
         return valores
     }
@@ -28,13 +28,15 @@ data class Bebidas(
             val posNome = cursor.getColumnIndex(TabelaBebidas.CAMPO_NOME)
             val posDescricao = cursor.getColumnIndex(TabelaBebidas.CAMPO_DESCRICAO)
             val posBebidasFK = cursor.getColumnIndex(TabelaBebidas.CAMPO_FK_MARCA)
+            val posNomeMarca = cursor.getColumnIndex(TabelaBebidas.CAMPO_NOME_MARCA)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val descricao = cursor.getString(posDescricao)
             val bebidaId = cursor.getLong(posBebidasFK)
+            val NomeMarca = cursor.getString(posNomeMarca)
 
-            return Bebidas(nome,descricao,bebidaId, id)
+            return Bebidas(nome,descricao, Marcas(NomeMarca,bebidaId), id)
         }
     }
 }

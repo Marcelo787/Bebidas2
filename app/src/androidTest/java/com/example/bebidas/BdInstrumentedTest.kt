@@ -64,10 +64,10 @@ class BdInstrumentedTest {
         val marcas = Marcas("Heineken")
         insereMarca(bd, marcas)
 
-        val bebidas1 = Bebidas("Cerveja com Álcool Mini","Contém Cereais que contêm glúten", marcas.id)
+        val bebidas1 = Bebidas("Cerveja com Álcool Mini","Contém Cereais que contêm glúten", marcas)
         insereBebidas(bd, bebidas1)
 
-        val bebidas2 = Bebidas("Cerveja com Álcool Barril","Contém Cereais que contêm glúten", marcas.id, )
+        val bebidas2 = Bebidas("Cerveja com Álcool Barril","Contém Cereais que contêm glúten", marcas)
         insereBebidas(bd, bebidas2)
     }
 
@@ -120,10 +120,10 @@ class BdInstrumentedTest {
         val marca = Marcas("Gutbier")
         insereMarca(bd, marca)
 
-        val bebida1 = Bebidas("Cerveja com Álcool", " É uma cerveja fácil de beber, leve, com um moderado conteúdo alcoólico e com um amargor refrescante ao paladar. ",marca.id)
+        val bebida1 = Bebidas("Cerveja com Álcool", " É uma cerveja fácil de beber, leve, com um moderado conteúdo alcoólico e com um amargor refrescante ao paladar. ",marca)
         insereBebidas(bd, bebida1)
 
-        val bebida2 = Bebidas("Cerveja sem Álcool", " É uma cerveja fácil de beber, leve, com um moderado conteúdo alcoólico e com um amargor refrescante ao paladar. ", marca.id, )
+        val bebida2 = Bebidas("Cerveja sem Álcool", " É uma cerveja fácil de beber, leve, com um moderado conteúdo alcoólico e com um amargor refrescante ao paladar. ", marca)
         insereBebidas(bd, bebida2)
 
         val tabelaBebidas = TabelaBebidas(bd)
@@ -181,10 +181,10 @@ class BdInstrumentedTest {
         val marcas2 = Marcas("Bandida do Pomar")
         insereMarca(bd, marcas2)
 
-        val bebidas = Bebidas("Sidra com Álcool Maçã Mini","Teor alcoólico: 4,5%", marcas2.id)
+        val bebidas = Bebidas("Sidra com Álcool Maçã Mini","Teor alcoólico: 4,5%", marcas2)
         insereBebidas(bd, bebidas)
 
-        bebidas.idMarca = marcas1.id
+        bebidas.idMarca = marcas1
         bebidas.nome = "Sidra com Álcool Maçã"
         bebidas.descricao = "Teor alcoólico: 4,2%"
 
@@ -219,7 +219,7 @@ class BdInstrumentedTest {
         val marcas = Marcas("Franziskaner")
         insereMarca(bd, marcas)
 
-        val bebidas = Bebidas("Cerveja com Álcool", "Percentagem de álcool em volume: 5",marcas.id)
+        val bebidas = Bebidas("Cerveja com Álcool", "Percentagem de álcool em volume: 5",marcas)
         insereBebidas(bd, bebidas)
 
         val registosEliminados = TabelaBebidas(bd).elimina(

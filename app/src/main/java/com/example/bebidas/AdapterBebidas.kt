@@ -24,7 +24,7 @@ class AdapterBebidas(val fragment: ListaBebidasFragment) : RecyclerView.Adapter<
                 field = value
                 textViewNome.text = bebidas?.nome ?: ""
                 textViewDescricao.text = bebidas?.descricao ?: ""
-                textViewMarcas.text = bebidas?.idMarca.toString() ?: ""
+                textViewMarcas.text = bebidas?.idMarca?.nome ?: ""
             }
 
     }
