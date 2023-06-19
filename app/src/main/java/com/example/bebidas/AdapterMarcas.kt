@@ -34,6 +34,7 @@ class AdapterMarcas(val fragment: ListaMarcasFragment) : RecyclerView.Adapter<Ad
 
         fun seleciona() {
             viewHolderSeleccionado = this
+            fragment.marcaSelecionada = marca
             itemView.setBackgroundResource(R.color.item_selecionado)
         }
 

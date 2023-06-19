@@ -26,6 +26,9 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    var marcaSelecionada : Marcas? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
