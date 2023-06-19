@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFragment_to_listaBebidasFragment"
             app:destination="@id/listaBebidasFragment" />
+        <action
+            android:id="@+id/action_MenuPrincipalFragment_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
     </fragment>
     <fragment
         android:id="@+id/SobreFragment"
@@ -69,5 +72,14 @@
             android:name="bebida"
             app:argType="com.example.bebidas.Bebidas" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/listaMarcasFragment"
+        android:name="com.example.bebidas.ListaMarcasFragment"
+        android:label="fragment_lista_marcas"
+        tools:layout="@layout/fragment_lista_marcas" >
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_MenuPrincipalFragment"
+            app:destination="@id/MenuPrincipalFragment" />
     </fragment>
 </navigation>
