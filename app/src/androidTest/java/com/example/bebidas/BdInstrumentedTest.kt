@@ -2,6 +2,7 @@ package com.example.bebidas
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 
@@ -74,5 +75,39 @@ class BdInstrumentedTest {
         assertNotEquals(-1, bebidas.id)
     }
 
+    @Test
+    fun consegueLerMarcas() {
+        val bd = getWritableDatabase()
 
+        val marca1 = Marcas("Super Bock")
+        insereMarca(bd, marca1)
+
+        val marca2 = Marcas("Sagres")
+        insereMarca(bd, marca2)
+
+        val tabelaMarcas = TabelaMarcas(bd)
+
+        val cursor = tabelaMarcas.consulta(
+            TabelaMarcas.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(marca1.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+
+        val marcaBD = Marcas.fromCursor(cursor)
+
+        assertEquals(marca1, marcaBD)
+
+        val cursorTodasMarcas = tabelaMarcas.consulta(
+            TabelaMarcas.CAMPOS,
+            null, null, null, null,
+            TabelaMarcas.CAMPO_NOME
+        )
+
+        assert(cursorTodasMarcas.count > 1)
+    }
 }
