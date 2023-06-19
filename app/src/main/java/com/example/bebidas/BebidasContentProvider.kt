@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.provider.BaseColumns
 
 class BebidasContentProvider : ContentProvider() {
     private var bdOpenHelper : BdBebidasOpenHelper? = null
@@ -115,7 +116,29 @@ class BebidasContentProvider : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.readableDatabase
+
+        val endereco = uriMatcher().match(uri)
+        val tabela = when (endereco) {
+            URI_MARCAS, URI_MARCAS_ID -> TabelaMarcas(bd)
+            URI_BEBIDAS, URI_BEBIDAS_ID -> TabelaBebidas(bd)
+            else -> null
+        }
+
+        val id = uri.lastPathSegment
+
+        val (selecao, argsSel) = when (endereco) {
+            URI_MARCAS_ID, URI_BEBIDAS_ID -> Pair("${BaseColumns._ID}=?", arrayOf(id))
+            else -> Pair(selection, selectionArgs)
+        }
+
+        return tabela?.consulta(
+            projection as Array<String>,
+            selecao,
+            argsSel as Array<String>?,
+            null,
+            null,
+            sortOrder)
     }
 
     /**
@@ -215,11 +238,15 @@ class BebidasContentProvider : ContentProvider() {
         const val BEBIDAS = "bebidas"
 
         private const val URI_MARCAS = 100
+        private const val URI_MARCAS_ID = 101
         private const val URI_BEBIDAS = 200
+        private const val URI_BEBIDAS_ID = 201
 
         fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTORIDADE, MARCAS, URI_MARCAS)
+            addURI(AUTORIDADE, "$MARCAS/#", URI_MARCAS_ID)
             addURI(AUTORIDADE, BEBIDAS, URI_BEBIDAS)
+            addURI(AUTORIDADE, "$BEBIDAS/#", URI_BEBIDAS_ID)
         }
     }
 }
