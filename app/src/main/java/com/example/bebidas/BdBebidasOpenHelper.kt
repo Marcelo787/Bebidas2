@@ -17,7 +17,9 @@ class BdBebidasOpenHelper(
      * @param db The database.
      */
     override fun onCreate(db: SQLiteDatabase?) {
-
+        requireNotNull(db)
+        TabelaMarcas(db).cria()
+        TabelaBebidas(db).cria()
     }
 
     /**
