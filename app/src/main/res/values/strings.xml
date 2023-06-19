@@ -25,4 +25,6 @@
     <string name="desc_da_bebida_nao_e_obrigatoria">Desc da Bebida Nao e Obrigatoria</string>
     <string name="erro_guardar_bebida">Erro Guardar Bebida</string>
     <string name="bebida_guardada_com_sucesso">Bebida Guardada com Sucesso</string>
+    <string name="bebida_eliminada_com_sucesso">Bebida Eliminada com Sucesso</string>
+    <string name="erro_eliminar_bebida">Erro Eliminar Bebida</string>
 </resources>
