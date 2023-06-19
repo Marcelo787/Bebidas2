@@ -13,4 +13,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="buttonBebidas">Bebidas</string>
     <string name="sobre_app"> App para gerir bebidas</string>
+    <string name="adicionar">adicionar</string>
+    <string name="editar">editar</string>
+    <string name="eliminar">eliminar</string>
 </resources>
