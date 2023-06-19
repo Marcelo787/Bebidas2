@@ -60,5 +60,10 @@
         <action
             android:id="@+id/action_eliminarBebidaFragment_to_listaBebidasFragment"
             app:destination="@id/listaBebidasFragment" />
+
+        <argument
+            android:name="bebida"
+            app:argType="com.example.bebidas.Bebidas" />
+
     </fragment>
 </navigation>
