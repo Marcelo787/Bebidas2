@@ -11,6 +11,8 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bebidas.databinding.FragmentListaMarcasBinding
 
+private const val ID_LOADER_MARCAS = 0
+
 /**
  * A simple [Fragment] subclass.
  * Use the [ListaLivrosFragment.newInstance] factory method to
@@ -41,6 +43,10 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val adapterMarcas = AdapterMarcas()
         binding.recyclerViewMarcas.adapter = adapterMarcas
         binding.recyclerViewMarcas.layoutManager = LinearLayoutManager(requireContext())
+
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_MARCAS, null, this)
+
     }
 
     companion object {
