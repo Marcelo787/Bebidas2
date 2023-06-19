@@ -11,6 +11,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.util.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -109,5 +110,45 @@ class BdInstrumentedTest {
         )
 
         assert(cursorTodasMarcas.count > 1)
+    }
+
+
+    @Test
+    fun consegueLerBebidas() {
+        val bd = getWritableDatabase()
+
+        val marca = Marcas("Gutbier")
+        insereMarca(bd, marca)
+
+        val bebida1 = Bebidas("Cerveja com Álcool", " É uma cerveja fácil de beber, leve, com um moderado conteúdo alcoólico e com um amargor refrescante ao paladar. ",marca.id)
+        insereBebidas(bd, bebida1)
+
+        val bebida2 = Bebidas("Cerveja sem Álcool", " É uma cerveja fácil de beber, leve, com um moderado conteúdo alcoólico e com um amargor refrescante ao paladar. ", marca.id, )
+        insereBebidas(bd, bebida2)
+
+        val tabelaBebidas = TabelaBebidas(bd)
+
+        val cursor = tabelaBebidas.consulta(
+            TabelaBebidas.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(bebida1.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+
+        val bebidasBD = Bebidas.fromCursor(cursor)
+
+        assertEquals(bebida1, bebidasBD)
+
+        val cursorTodosBebidas = tabelaBebidas.consulta(
+            TabelaBebidas.CAMPOS,
+            null, null, null, null,
+            TabelaBebidas.CAMPO_NOME
+        )
+
+        assert(cursorTodosBebidas.count > 1)
     }
 }
