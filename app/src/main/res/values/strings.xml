@@ -16,4 +16,7 @@
     <string name="adicionar">adicionar</string>
     <string name="editar">editar</string>
     <string name="eliminar">eliminar</string>
+    <string name="nomeBebida">Nome da Bebida</string>
+    <string name="descricaoBebida">Descricão da Bebida</string>
+    <string name="marcas">Marca</string>
 </resources>
