@@ -1,6 +1,8 @@
 package com.example.bebidas
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.provider.BaseColumns
 
 data class Marcas(
     var nome:String,
@@ -12,5 +14,16 @@ data class Marcas(
         valores.put(TabelaMarcas.CAMPO_NOME, nome)
 
         return valores
+    }
+    companion object {
+        fun fromCursor(cursor: Cursor) : Marcas {
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNome = cursor.getColumnIndex(TabelaMarcas.CAMPO_NOME)
+
+            val id = cursor.getLong(posId)
+            val nome = cursor.getString(posNome)
+
+            return Marcas(nome, id)
+        }
     }
 }
