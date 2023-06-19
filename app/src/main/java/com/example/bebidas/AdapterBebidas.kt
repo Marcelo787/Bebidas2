@@ -3,6 +3,7 @@ package com.example.bebidas
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -14,7 +15,17 @@ class AdapterBebidas(val fragment: ListaBebidasFragment) : RecyclerView.Adapter<
         }
 
     inner class ViewHolderBebida(contentor: View) : ViewHolder(contentor) {
+        private val textViewNome = contentor.findViewById<TextView>(R.id.textViewNome)
+        private val textViewDescricao = contentor.findViewById<TextView>(R.id.textViewDescricao)
+        private val textViewMarcas = contentor.findViewById<TextView>(R.id.textViewMarca)
+
         internal var bebidas: Bebidas? = null
+            set(value) {
+                field = value
+                textViewNome.text = bebidas?.nome ?: ""
+                textViewDescricao.text = bebidas?.descricao ?: ""
+                textViewMarcas.text = bebidas?.idMarca.toString() ?: ""
+            }
 
     }
 
@@ -78,7 +89,7 @@ class AdapterBebidas(val fragment: ListaBebidasFragment) : RecyclerView.Adapter<
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderBebida, position: Int) {
-        cursor!!.move(position)
+        cursor!!.moveToPosition(position)
         holder.bebidas = Bebidas.fromCursor(cursor!!)
     }
 }
