@@ -3,6 +3,7 @@ package com.example.bebidas
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -15,7 +16,14 @@ class AdapterMarcas(val fragment: ListaMarcasFragment) : RecyclerView.Adapter<Ad
         }
 
     inner class ViewHolderMarca(contentor: View) : ViewHolder(contentor) {
+        private val textViewNome = contentor.findViewById<TextView>(R.id.textViewNome2)
+
         internal var marca: Marcas? = null
+            set(value) {
+                field = value
+                textViewNome.text = marca?.nome ?: ""
+
+            }
     }
 
     /**
