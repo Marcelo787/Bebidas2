@@ -13,5 +13,8 @@ class TabelaBebidas(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
         const val CAMPO_NOME = "nome_bebida"
         const val CAMPO_DESCRICAO = "descricao_da_bebida"
         const val CAMPO_FK_MARCA = "id_marca"
+
+        val CAMPOS = arrayOf(BaseColumns._ID, CAMPO_NOME, CAMPO_DESCRICAO, CAMPO_FK_MARCA)
+
     }
 }
