@@ -32,4 +32,14 @@ class BdInstrumentedTest {
         assert(bd.isOpen)
     }
 
+    @Test
+    fun consegueInserirMarcas() {
+        val openHelper = BdBebidasOpenHelper(getAppContext())
+        val bd = openHelper.writableDatabase
+
+        val marca = Marcas("Super Bock")
+        val id = TabelaMarcas(bd).insere(marca.toContentValues())
+        assertNotEquals(-1, id)
+    }
+
 }
