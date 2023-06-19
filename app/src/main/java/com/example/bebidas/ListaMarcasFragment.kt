@@ -61,6 +61,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         loader.initLoader(ID_LOADER_MARCAS, null, this)
 
         val activity = activity as MainActivity
+        activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista_bebidas
     }
 
