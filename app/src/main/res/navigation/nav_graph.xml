@@ -105,5 +105,9 @@
         <action
             android:id="@+id/action_eliminarMarcaFragment_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+        <argument
+            android:name="marcas"
+            app:argType="com.example.bebidas.Marcas" />
+
     </fragment>
 </navigation>
