@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.bebidas.databinding.FragmentEliminarBebidaBinding
 
 class EliminarBebidaFragment : Fragment() {
+    private lateinit var bebidas: Bebidas
     private var _binding: FragmentEliminarBebidaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -32,6 +33,13 @@ class EliminarBebidaFragment : Fragment() {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
+
+        bebidas = EliminarBebidaFragmentArgs.fromBundle(requireArguments()).bebida
+
+        binding.textViewNome.text = bebidas.nome
+        binding.textViewDescricao.text = bebidas.descricao
+        binding.textViewMarca.text = bebidas.idMarca.nome
+
     }
 
     override fun onDestroyView() {

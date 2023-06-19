@@ -175,6 +175,8 @@ class ListaBebidasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun eliminarBebidas() {
+        val acao = ListaBebidasFragmentDirections.actionListaBebidasFragmentToEliminarBebidaFragment(bebidaSelecionada!!)
+        findNavController().navigate(acao)
 
     }
 
