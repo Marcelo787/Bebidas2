@@ -161,7 +161,15 @@ class BebidasContentProvider : ContentProvider() {
      * @return a MIME type string, or `null` if there is no type.
      */
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        val endereco = uriMatcher().match(uri)
+
+        return when(endereco) {
+            URI_MARCAS -> "vnd.android.cursor.dir/$MARCAS"
+            URI_MARCAS_ID -> "vnd.android.cursor.item/$MARCAS"
+            URI_BEBIDAS -> "vnd.android.cursor.dir/$BEBIDAS"
+            URI_BEBIDAS_ID -> "vnd.android.cursor.item/$BEBIDAS"
+            else -> null
+        }
     }
 
     /**
