@@ -7,12 +7,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.example.bebidas.databinding.FragmentNovaBebidaBinding
+import java.util.*
 
 private const val ID_LOADER_MARCAS = 0
 
@@ -56,19 +58,52 @@ class NovaBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 true
             }
             R.id.action_cancelar -> {
-                cancelar()
+                voltaListaBebidas()
                 true
             }
             else -> false
         }
     }
 
-    private fun cancelar() {
+    private fun voltaListaBebidas() {
         findNavController().navigate(R.id.action_novaBebidaFragment_to_listaBebidasFragment)
     }
 
     private fun guardar() {
+        val nome_da_bebida = binding.editTextNome.text.toString()
+        if (nome_da_bebida.isBlank()) {
+            binding.editTextNome.error = getString(R.string.nome_da_bebida_obrigatorio)
+            binding.editTextNome.requestFocus()
+            return
+        }
 
+        val desc_da_bebida = binding.editTextDescricaoDaBebida.text.toString()
+        if (desc_da_bebida.isBlank()) {
+            binding.editTextDescricaoDaBebida.error = getString(R.string.desc_da_bebida_nao_e_obrigatoria)
+            binding.editTextDescricaoDaBebida.requestFocus()
+            return
+        }
+
+        val marcaId = binding.spinnerMarcas.selectedItemId
+
+        val bebidas = Bebidas(
+            nome_da_bebida,
+            desc_da_bebida,
+            Marcas("?", marcaId)
+        )
+
+        val id = requireActivity().contentResolver.insert(
+            BebidasContentProvider.ENDERECO_BEBIDAS,
+            bebidas.toContentValues()
+        )
+
+        if (id == null) {
+            binding.editTextNome.error = getString(R.string.erro_guardar_bebida)
+            return
+        }
+
+        Toast.makeText(requireContext(), getString(R.string.bebida_guardada_com_sucesso), Toast.LENGTH_SHORT).show()
+        voltaListaBebidas()
     }
 
     /**

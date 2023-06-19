@@ -21,4 +21,8 @@
     <string name="marcas">Marca</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="nome_da_bebida_obrigatorio">Nome da Bebida Obrigatorio</string>
+    <string name="desc_da_bebida_nao_e_obrigatoria">Desc da Bebida Nao e Obrigatoria</string>
+    <string name="erro_guardar_bebida">Erro Guardar Bebida</string>
+    <string name="bebida_guardada_com_sucesso">Bebida Guardada com Sucesso</string>
 </resources>
