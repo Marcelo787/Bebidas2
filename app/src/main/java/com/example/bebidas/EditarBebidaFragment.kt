@@ -50,9 +50,13 @@ class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val bebida = EditarBebidaFragmentArgs.fromBundle(requireArguments()).bebida
 
         if (bebida != null) {
+            activity.atualizaTitulo(R.string.editar_bebida_label)
+
             binding.editTextNome.setText(bebida.nome)
             binding.editTextDescricaoDaBebida.setText(bebida.descricao)
 
+        } else {
+            activity.atualizaTitulo(R.string.nova_bebida_label)
         }
 
         this.bebida = bebida
