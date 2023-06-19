@@ -13,7 +13,8 @@ class AdapterBebidas(val fragment: ListaBebidasFragment) : RecyclerView.Adapter<
             notifyDataSetChanged()
         }
 
-    inner class ViewHolderBebida(itemView: View) : ViewHolder(itemView) {
+    inner class ViewHolderBebida(contentor: View) : ViewHolder(contentor) {
+        internal var bebidas: Bebidas? = null
 
     }
 
@@ -77,6 +78,7 @@ class AdapterBebidas(val fragment: ListaBebidasFragment) : RecyclerView.Adapter<
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderBebida, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.move(position)
+        holder.bebidas = Bebidas.fromCursor(cursor!!)
     }
 }
