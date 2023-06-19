@@ -81,5 +81,17 @@
         <action
             android:id="@+id/action_listaMarcasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_novaMarcaFragment"
+            app:destination="@id/novaMarcaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novaMarcaFragment"
+        android:name="com.example.bebidas.NovaMarcaFragment"
+        android:label="fragment_nova_marca"
+        tools:layout="@layout/fragment_nova_marca" >
+        <action
+            android:id="@+id/action_novaMarcaFragment_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
     </fragment>
 </navigation>
