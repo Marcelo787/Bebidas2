@@ -18,13 +18,31 @@ class AdapterMarcas(val fragment: ListaMarcasFragment) : RecyclerView.Adapter<Ad
     inner class ViewHolderMarca(contentor: View) : ViewHolder(contentor) {
         private val textViewNome2 = contentor.findViewById<TextView>(R.id.textViewNome2)
 
+        init {
+            contentor.setOnClickListener {
+                viewHolderSeleccionado?.desSeleciona()
+                seleciona()
+            }
+        }
+
         internal var marca: Marcas? = null
             set(value) {
                 field = value
                 textViewNome2.text = marca?.nome ?: ""
 
             }
+
+        fun seleciona() {
+            viewHolderSeleccionado = this
+            itemView.setBackgroundResource(R.color.item_selecionado)
+        }
+
+        fun desSeleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
     }
+
+    private var viewHolderSeleccionado : ViewHolderMarca? = null
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
