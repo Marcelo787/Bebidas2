@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_listaMarcasFragment_to_novaMarcaFragment"
             app:destination="@id/novaMarcaFragment" />
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_eliminarMarcaFragment"
+            app:destination="@id/eliminarMarcaFragment" />
     </fragment>
     <fragment
         android:id="@+id/novaMarcaFragment"
@@ -92,6 +95,15 @@
         tools:layout="@layout/fragment_nova_marca" >
         <action
             android:id="@+id/action_novaMarcaFragment_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarMarcaFragment"
+        android:name="com.example.bebidas.EliminarMarcaFragment"
+        android:label="fragment_eliminar_marca"
+        tools:layout="@layout/fragment_eliminar_marca" >
+        <action
+            android:id="@+id/action_eliminarMarcaFragment_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
     </fragment>
 </navigation>
