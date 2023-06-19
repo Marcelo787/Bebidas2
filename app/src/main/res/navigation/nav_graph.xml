@@ -38,16 +38,16 @@
             app:destination="@id/MenuPrincipalFragment" />
         <action
             android:id="@+id/action_listaBebidasFragment_to_novaBebidaFragment"
-            app:destination="@id/novaBebidaFragment" />
+            app:destination="@id/editarBebidaFragment" />
         <action
             android:id="@+id/action_listaBebidasFragment_to_eliminarBebidaFragment"
             app:destination="@id/eliminarBebidaFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novaBebidaFragment"
-        android:name="com.example.bebidas.NovaBebidaFragment"
-        android:label="fragment_nova_bebida"
-        tools:layout="@layout/fragment_nova_bebida" >
+        android:id="@+id/editarBebidaFragment"
+        android:name="com.example.bebidas.EditarBebidaFragment"
+        android:label="fragment_editar_bebida"
+        tools:layout="@layout/fragment_editar_bebida">
         <action
             android:id="@+id/action_novaBebidaFragment_to_listaBebidasFragment"
             app:destination="@id/listaBebidasFragment" />
