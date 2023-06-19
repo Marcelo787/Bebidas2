@@ -1,6 +1,7 @@
 package com.example.bebidas
 
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 
@@ -32,14 +33,46 @@ class BdInstrumentedTest {
         assert(bd.isOpen)
     }
 
+    private fun getWritableDatabase(): SQLiteDatabase {
+        val openHelper = BdBebidasOpenHelper(getAppContext())
+        return openHelper.writableDatabase
+    }
+
+
     @Test
     fun consegueInserirMarcas() {
-        val openHelper = BdBebidasOpenHelper(getAppContext())
-        val bd = openHelper.writableDatabase
+        val bd = getWritableDatabase()
 
         val marca = Marcas("Super Bock")
-        val id = TabelaMarcas(bd).insere(marca.toContentValues())
-        assertNotEquals(-1, id)
+        insereMarca(bd, marca)
     }
+
+    private fun insereMarca(
+        bd: SQLiteDatabase,
+        marcas: Marcas
+    ) {
+        marcas.id = TabelaMarcas(bd).insere(marcas.toContentValues())
+        assertNotEquals(-1, marcas.id)
+    }
+
+    @Test
+    fun consegueInserirBebidas() {
+        val bd = getWritableDatabase()
+
+        val marcas = Marcas("Heineken")
+        insereMarca(bd, marcas)
+
+        val bebidas1 = Bebidas("Cerveja com Álcool Mini","Contém Cereais que contêm glúten", marcas.id)
+        insereBebidas(bd, bebidas1)
+
+        val bebidas2 = Bebidas("Cerveja com Álcool Barril","Contém Cereais que contêm glúten", marcas.id, )
+        insereBebidas(bd, bebidas2)
+    }
+
+    private fun insereBebidas(bd: SQLiteDatabase, bebidas: Bebidas) {
+        bebidas.id = TabelaBebidas(bd).insere(bebidas.toContentValues())
+        assertNotEquals(-1, bebidas.id)
+    }
+
 
 }
