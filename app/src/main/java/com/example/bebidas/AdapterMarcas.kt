@@ -16,12 +16,12 @@ class AdapterMarcas(val fragment: ListaMarcasFragment) : RecyclerView.Adapter<Ad
         }
 
     inner class ViewHolderMarca(contentor: View) : ViewHolder(contentor) {
-        private val textViewNome = contentor.findViewById<TextView>(R.id.textViewNome2)
+        private val textViewNome2 = contentor.findViewById<TextView>(R.id.textViewNome2)
 
         internal var marca: Marcas? = null
             set(value) {
                 field = value
-                textViewNome.text = marca?.nome ?: ""
+                textViewNome2.text = marca?.nome ?: ""
 
             }
     }

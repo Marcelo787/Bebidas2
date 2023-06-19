@@ -50,7 +50,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterMarcas = AdapterMarcas(this)
+        adapterMarcas = AdapterMarcas(this)
         binding.recyclerViewMarcas.adapter = adapterMarcas
         binding.recyclerViewMarcas.layoutManager = LinearLayoutManager(requireContext())
 
