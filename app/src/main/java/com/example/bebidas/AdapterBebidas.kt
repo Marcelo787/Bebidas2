@@ -36,6 +36,7 @@ class AdapterBebidas(val fragment: ListaBebidasFragment) : RecyclerView.Adapter<
 
         fun seleciona() {
             viewHolderSeleccionado = this
+            fragment.bebidaSelecionada = bebidas
             itemView.setBackgroundResource(R.color.item_selecionado)
         }
 
