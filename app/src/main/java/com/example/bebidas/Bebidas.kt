@@ -3,7 +3,7 @@ package com.example.bebidas
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
-import java.util.*
+
 
 data class Bebidas(
     var nome: String,

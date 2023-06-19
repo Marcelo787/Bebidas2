@@ -1,10 +1,11 @@
 package com.example.bebidas
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.bebidas.databinding.FragmentMenuPrincipalBinding
 /**
@@ -33,6 +34,10 @@ class MenuPrincipalFragment : Fragment() {
 
         binding.buttonSobre.setOnClickListener {
             findNavController().navigate(R.id.action_MenuPrincipalFragment_to_SobreFragment)
+        }
+
+        binding.buttonBebidas.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuPrincipalFragment_to_listaBebidasFragment)
         }
     }
 
