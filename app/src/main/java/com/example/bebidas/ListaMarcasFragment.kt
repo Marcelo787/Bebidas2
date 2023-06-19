@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bebidas.databinding.FragmentListaMarcasBinding
 
@@ -182,6 +183,6 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun adicionarMarca() {
-
+        findNavController().navigate(R.id.action_listaMarcasFragment_to_novaMarcaFragment)
     }
 }
