@@ -30,4 +30,5 @@
     <string name="editar_bebida_label">Editar Bebida</string>
     <string name="nova_bebida_label">Nova Bebida</string>
     <string name="buttonMarcas">Marcas</string>
+    <string name="NomeMarca">Marca</string>
 </resources>
