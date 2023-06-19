@@ -14,8 +14,8 @@ class AdapterMarcas(val fragment: ListaMarcasFragment) : RecyclerView.Adapter<Ad
             notifyDataSetChanged()
         }
 
-    inner class ViewHolderMarca(itemView: View) : ViewHolder(itemView) {
-
+    inner class ViewHolderMarca(contentor: View) : ViewHolder(contentor) {
+        internal var marca: Marcas? = null
     }
 
     /**
@@ -78,6 +78,7 @@ class AdapterMarcas(val fragment: ListaMarcasFragment) : RecyclerView.Adapter<Ad
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderMarca, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.marca = Marcas.fromCursor(cursor!!)
     }
 }
