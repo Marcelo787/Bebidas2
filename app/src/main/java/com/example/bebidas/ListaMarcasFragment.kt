@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bebidas.databinding.FragmentListaMarcasBinding
@@ -70,7 +71,13 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @return Return a new Loader instance that is ready to start loading.
      */
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
+        return CursorLoader(
+            requireContext(),
+            BebidasContentProvider.ENDERECO_MARCAS,
+            TabelaMarcas.CAMPOS,
+            null, null,
+            TabelaMarcas.CAMPO_NOME
+        )
     }
 
     /**
