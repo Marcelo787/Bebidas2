@@ -40,8 +40,12 @@ class EditarMarcaFragment : Fragment() {
         val marca = EditarMarcaFragmentArgs.fromBundle(requireArguments()).marcas
 
         if (marca != null) {
+            activity.atualizaTitulo(R.string.editar_marca_label)
+
             binding.editTextNomeMarca.setText(marca.nome)
 
+        } else {
+            activity.atualizaTitulo(R.string.nova_marca_label)
         }
 
         this.marca = marca

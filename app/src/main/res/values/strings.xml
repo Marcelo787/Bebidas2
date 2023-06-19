@@ -36,4 +36,6 @@
     <string name="marca_guardada_com_sucesso">Marca Guardada com Sucesso</string>
     <string name="marca_eliminada_com_sucesso">Marca Eliminada com Sucesso</string>
     <string name="erro_eliminar_marca">Erro Eliminar Marca</string>
+    <string name="editar_marca_label">Editar Marca</string>
+    <string name="nova_marca_label">Nova Marca</string>
 </resources>
