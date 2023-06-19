@@ -30,7 +30,7 @@ class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditarBebidaBinding.inflate(inflater, container, false)
         return binding.root
@@ -181,7 +181,9 @@ class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        binding.spinnerMarcas.adapter = null
+        if (_binding != null) {
+            binding.spinnerMarcas.adapter = null
+        }
     }
 
     /**

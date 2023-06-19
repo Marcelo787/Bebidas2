@@ -17,11 +17,6 @@ import com.example.bebidas.databinding.FragmentListaBebidasBinding
 private const val ID_LOADER_BEBIDAS = 0
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaLivrosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListaBebidasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentListaBebidasBinding? = null
 
@@ -47,7 +42,7 @@ class ListaBebidasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListaBebidasBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -153,7 +148,9 @@ class ListaBebidasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterBebidas!!.cursor = null
+        if (adapterBebidas != null) {
+            adapterBebidas!!.cursor = null
+        }
     }
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean {
