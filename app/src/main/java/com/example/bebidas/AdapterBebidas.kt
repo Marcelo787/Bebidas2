@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class AdapterBebidas : RecyclerView.Adapter<AdapterBebidas.ViewHolderBebida>() {
+class AdapterBebidas(val fragment: ListaBebidasFragment) : RecyclerView.Adapter<AdapterBebidas.ViewHolderBebida>() {
     var cursor: Cursor? = null
         set(value) {
             field = value
@@ -41,7 +41,9 @@ class AdapterBebidas : RecyclerView.Adapter<AdapterBebidas.ViewHolderBebida>() {
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderBebida {
-        TODO("Not yet implemented")
+        return ViewHolderBebida(
+            fragment.layoutInflater.inflate(R.layout.item_bebida, parent, false)
+        )
     }
 
     /**
