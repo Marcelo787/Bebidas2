@@ -2,6 +2,7 @@ package com.example.bebidas
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 
@@ -205,5 +206,20 @@ class BebidasContentProvider : ContentProvider() {
         selectionArgs: Array<out String>?
     ): Int {
         TODO("Not yet implemented")
+    }
+
+    companion object {
+        private const val AUTORIDADE = "com.example.bebidas"
+
+        const val MARCAS = "marcas"
+        const val BEBIDAS = "bebidas"
+
+        private const val URI_MARCAS = 100
+        private const val URI_BEBIDAS = 200
+
+        fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
+            addURI(AUTORIDADE, MARCAS, URI_MARCAS)
+            addURI(AUTORIDADE, BEBIDAS, URI_BEBIDAS)
+        }
     }
 }
