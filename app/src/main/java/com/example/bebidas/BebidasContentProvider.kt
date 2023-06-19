@@ -276,13 +276,19 @@ class BebidasContentProvider : ContentProvider() {
     companion object {
         private const val AUTORIDADE = "com.example.bebidas"
 
-        const val MARCAS = "marcas"
-        const val BEBIDAS = "bebidas"
+        private const val MARCAS = "marcas"
+        private const val BEBIDAS = "bebidas"
+
 
         private const val URI_MARCAS = 100
         private const val URI_MARCAS_ID = 101
         private const val URI_BEBIDAS = 200
         private const val URI_BEBIDAS_ID = 201
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTORIDADE")
+
+        val ENDERECO_MARCAS = Uri.withAppendedPath(ENDERECO_BASE, MARCAS)
+        val ENDERECO_BEBIDAS = Uri.withAppendedPath(ENDERECO_BASE, BEBIDAS)
 
         fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTORIDADE, MARCAS, URI_MARCAS)
