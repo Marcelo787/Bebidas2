@@ -1,6 +1,7 @@
 package com.example.bebidas
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -19,6 +20,7 @@ import java.util.*
 private const val ID_LOADER_MARCAS = 0
 
 class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var bebida: Bebidas?= null
     private var _binding: FragmentEditarBebidaBinding? = null
 
     // This property is only valid between onCreateView and
@@ -44,6 +46,16 @@ class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_guardar_cancelar
+
+        val bebida = EditarBebidaFragmentArgs.fromBundle(requireArguments()).bebida
+
+        if (bebida != null) {
+            binding.editTextNome.setText(bebida.nome)
+            binding.editTextDescricaoDaBebida.setText(bebida.descricao)
+
+        }
+
+        this.bebida = bebida
     }
 
     override fun onDestroyView() {
@@ -86,12 +98,40 @@ class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val marcaId = binding.spinnerMarcas.selectedItemId
 
-        val bebidas = Bebidas(
-            nome_da_bebida,
-            desc_da_bebida,
-            Marcas("?", marcaId)
-        )
+        if (bebida == null) {
+            val bebida = Bebidas(
+                nome_da_bebida,
+                desc_da_bebida,
+                Marcas("?", marcaId)
 
+            )
+
+            insereBebida(bebida)
+        } else {
+            val bebida = bebida!!
+            bebida.nome = nome_da_bebida
+            bebida.idMarca = Marcas("?", marcaId)
+            bebida.descricao = desc_da_bebida
+
+            alteraBebida(bebida)
+        }
+    }
+
+    private fun alteraBebida(bebidas: Bebidas) {
+        val enderecoBebida = Uri.withAppendedPath(BebidasContentProvider.ENDERECO_BEBIDAS, bebidas.id.toString())
+        val bebidaAlterada = requireActivity().contentResolver.update(enderecoBebida, bebidas.toContentValues(), null, null)
+
+        if (bebidaAlterada == 1) {
+            Toast.makeText(requireContext(), R.string.bebida_guardada_com_sucesso, Toast.LENGTH_LONG).show()
+            voltaListaBebidas()
+        } else {
+            binding.editTextNome.error = getString(R.string.erro_guardar_bebida)
+        }
+    }
+
+    private fun insereBebida(
+        bebidas: Bebidas
+    ) {
         val id = requireActivity().contentResolver.insert(
             BebidasContentProvider.ENDERECO_BEBIDAS,
             bebidas.toContentValues()
@@ -102,7 +142,11 @@ class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        Toast.makeText(requireContext(), getString(R.string.bebida_guardada_com_sucesso), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.bebida_guardada_com_sucesso),
+            Toast.LENGTH_SHORT
+        ).show()
         voltaListaBebidas()
     }
 
@@ -197,5 +241,21 @@ class EditarBebidaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             intArrayOf(android.R.id.text1),
             0
         )
+
+        mostraMarcaSelecionadaSpinner()
+    }
+
+    private fun mostraMarcaSelecionadaSpinner() {
+        if (bebida == null) return
+
+        val idMarca = bebida!!.idMarca.id
+
+        val ultimaMarca = binding.spinnerMarcas.count - 1
+        for (i in 0..ultimaMarca) {
+            if (idMarca == binding.spinnerMarcas.getItemIdAtPosition(i)) {
+                binding.spinnerMarcas.setSelection(i)
+                return
+            }
+        }
     }
 }
