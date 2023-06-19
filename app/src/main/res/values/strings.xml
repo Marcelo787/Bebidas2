@@ -31,4 +31,7 @@
     <string name="nova_bebida_label">Nova Bebida</string>
     <string name="buttonMarcas">Marcas</string>
     <string name="NomeMarca">Marca</string>
+    <string name="Nome_Marca_obrigatorio">Nome Marca obrigatorio</string>
+    <string name="erro_guardar_marca">Erro Guardar Marca</string>
+    <string name="marca_guardada_com_sucesso">Marca Guardada com Sucesso</string>
 </resources>

@@ -4,9 +4,12 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.bebidas.databinding.FragmentNovaMarcaBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NovaMarcaFragment : Fragment() {
     private var _binding: FragmentNovaMarcaBinding? = null
@@ -46,18 +49,40 @@ class NovaMarcaFragment : Fragment() {
                 true
             }
             R.id.action_cancelar -> {
-                cancelar()
+                voltaListaMarcas()
                 true
             }
             else -> false
         }
     }
 
-    private fun cancelar() {
+    private fun voltaListaMarcas() {
         findNavController().navigate(R.id.action_novaMarcaFragment_to_listaMarcasFragment)
     }
 
     private fun guardar() {
+        val nome_Marca = binding.editTextNomeMarca.text.toString()
+        if (nome_Marca.isBlank()) {
+            binding.editTextNomeMarca.error = getString(R.string.Nome_Marca_obrigatorio)
+            binding.editTextNomeMarca.requestFocus()
+            return
+        }
 
+        val marca = Marcas(
+            nome_Marca
+        )
+
+        val id = requireActivity().contentResolver.insert(
+            BebidasContentProvider.ENDERECO_MARCAS,
+            marca.toContentValues()
+        )
+
+        if (id == null) {
+            binding.editTextNomeMarca.error = getString(R.string.erro_guardar_marca)
+            return
+        }
+
+        Toast.makeText(requireContext(), getString(R.string.marca_guardada_com_sucesso), Toast.LENGTH_SHORT).show()
+        voltaListaMarcas()
     }
 }
