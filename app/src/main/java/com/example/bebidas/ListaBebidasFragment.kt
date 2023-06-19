@@ -11,6 +11,8 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bebidas.databinding.FragmentListaBebidasBinding
 
+private const val ID_LOADER_BEBIDAS = 0
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -45,6 +47,9 @@ class ListaBebidasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val adapterBebidas = AdapterBebidas()
         binding.recyclerViewBebidas.adapter = adapterBebidas
         binding.recyclerViewBebidas.layoutManager = LinearLayoutManager(requireContext())
+
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_BEBIDAS, null, this)
     }
 
     companion object {
